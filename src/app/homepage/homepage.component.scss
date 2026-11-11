@@ -1,0 +1,46 @@
+.background {
+    display: flex;
+    height: 100vh;
+    background-color: #303131;
+    justify-content: center;
+
+
+}
+
+.start_game_section {
+
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+
+    
+}
+
+.subtitle {
+    font-family: 'Almarai';
+    font-weight: 400;
+    font-size: 48px;
+    color: #FFFFFF;
+}
+
+h1{
+    font-family: 'Red Rose';
+    font-weight: 700;
+    font-style: Bold;
+    font-size: 140px;
+    color: #FFFFFF;
+    margin: 0;
+
+}
+
+.ctrl-img {
+    position: absolute;
+    top: 500px;
+
+
+}
+
+.button-img{
+    width: 250px;
+    height: 96px;
+}

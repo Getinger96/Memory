@@ -14,22 +14,22 @@
             </section>
             <section class="settings-page__settings__choose">
                 <label>
-                    <input type="radio" name="theme" value="code">
+                    <input type="radio" name="theme" value="Code vibes" (change)="theme='Code vibes'">
                     Code vibes theme
                 </label>
 
                 <label>
-                    <input type="radio" name="theme" value="Gaming">
+                    <input type="radio" name="theme" value="Gaming" (change)="theme = 'Gaming'">
                     Gaming theme
                 </label>
 
                 <label>
-                    <input type="radio" name="theme" value="DA">
+                    <input type="radio" name="theme" value="DA" (change)="theme = 'DA Projects theme'">
                     DA Projects theme
                 </label>
 
                 <label>
-                    <input type="radio" name="theme" value="Foods">
+                    <input type="radio" name="theme" value="Foods" (change)="theme = 'Foods theme'">
                     Foods theme
                 </label>
             </section>
@@ -43,12 +43,12 @@
 
             <section class="settings-page__settings__choose">
                 <label>
-                    <input type="radio" name="player" value="Blue-player">
+                    <input type="radio" name="player" value="Blue-player" (change)="player = 'Blue Player'">
                     Blue
                 </label>
 
                 <label>
-                    <input type="radio" name="player" value="Orange-player">
+                    <input type="radio" name="player" value="Orange-player" (change)="player = 'Orange Player'">
                     Orange
                 </label>
             </section>
@@ -67,17 +67,17 @@
 
             <section class="settings-page__settings__choose">
                 <label>
-                    <input type="radio" name="size" value="16">
+                    <input type="radio" name="size" value="16" (change)="size = '16 cards'">
                     16 cards
                 </label>
 
                 <label>
-                    <input type="radio" name="size" value="24">
+                    <input type="radio" name="size" value="24" (change)="size = '24 cards'">
                     24 cards
                 </label>
 
                 <label>
-                    <input type="radio" name="size" value="36">
+                    <input type="radio" name="size" value="36" (change)="size = '36 cards'">
                     36 cards
                 </label>
             </section>
@@ -90,14 +90,15 @@
 
     </section>
     <section class="Settings-page__right">
-        <img src="./assets/img/Frame 629.png" alt="">
+        <img [src]="themeFrames[theme] || './assets/img/Frame 629.png'" alt="">
         <section class="Settings-page__right__progress">
-            <p>Game theme</p>
-            <img src="./assets/img/Line 6.png" alt="">
-            <p>Player</p>
-            <img src="./assets/img/Line 6.png" alt="">
-            <p>Board size</p>
-            <button type="button" disabled><img src="./assets/img/smart_display.png" alt=""> Start</button>
+            <p>{{ theme || 'Theme' }}</p>
+            <img [src]="theme ? './assets/img/Line 7.png' : './assets/img/Line 6.png'" alt="">
+            <p>{{ player || 'Player' }}</p>
+            <img [src]="player ? './assets/img/Line 7.png' : './assets/img/Line 6.png'" alt="">
+            <p>{{ size || 'Board size' }}</p>
+            <button (click)="log()" type="button" [disabled]="!theme || !player || !size"><img
+                    src="./assets/img/smart_display.png" alt=""> Start</button>
         </section>
 
     </section>

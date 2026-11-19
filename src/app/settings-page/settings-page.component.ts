@@ -9,4 +9,21 @@ import { Component } from '@angular/core';
 })
 export class SettingsPageComponent {
 
+
+  theme = '';
+  player = '';
+  size = '';
+
+
+  themeFrames: Record<string, string> = {
+    'Code vibes': './assets/img/Frame 629.png',
+    'Gaming': './assets/img/theme gaming.png',
+    'DA Projects': './assets/img/theme Visual.png',
+    'Foods theme': './assets/img/theme food.png',
+  };
+
+  log() {
+    console.log("hallo")
+
+  }
 }

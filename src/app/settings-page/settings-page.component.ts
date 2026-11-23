@@ -18,7 +18,7 @@ export class SettingsPageComponent {
   themeFrames: Record<string, string> = {
     'Code vibes': './assets/img/Frame 629.png',
     'Gaming': './assets/img/theme gaming.png',
-    'DA Projects': './assets/img/theme Visual.png',
+    'DA Projects theme': './assets/img/Theme Visual.png',
     'Foods theme': './assets/img/theme food.png',
   };
 

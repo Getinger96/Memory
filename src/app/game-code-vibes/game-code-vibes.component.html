@@ -1,9 +1,34 @@
 <section class="game-body-section">
 
-    <nav></nav>
+    <header class="game__header">
+        <section class="game__scores">
+            <span class="score score--orange">
+                <img src="./assets/img/orange_player_Pawn.png" alt="">
+                {{ orangeScore }}
+            </span>
+            <span class="score score--blue">
+                <img src="./assets/img/blue_player_pawn.png" alt="">
+                {{ blueScore }}
+            </span>
+        </section>
+
+        <p class="game__current">
+            Current player:
+            <img [src]="'./assets/img/player-' + currentPlayer + '.png'" alt="">
+        </p>
+
+        <button type="button" class="game__exit">
+            <img src="./assets/img/move_item.png" alt=""> Exit game
+        </button>
+    </header>
 
     <section class="game-section">
-
+        @for (card of cards; track card.id) {
+        <div class="card" [class.flipped]="card.flipped || card.matched" (click)="flip(card)">
+            <img class="card__front" [src]="card.image" alt="" />
+            <img class="card__back" src="./assets/img/cards/GameVibes/Game card 3.png" alt="" />
+        </div>
+        }
     </section>
 
 

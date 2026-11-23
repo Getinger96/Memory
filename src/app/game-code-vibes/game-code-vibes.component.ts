@@ -19,6 +19,11 @@ interface Card {
 export class GameCodeVibesComponent {
 
   cards: Card[] = [];
+  openCards: Card[] = [];
+  locked = false;
+  currentPlayer: 'orange' | 'blue' = 'orange'; // später aus den Einstellungen
+orangeScore = 0;
+blueScore = 0;
 
 
   allImages: string[] = Array.from(
@@ -55,6 +60,41 @@ export class GameCodeVibesComponent {
     }
 
     return neu;
+  }
+
+
+  flip(card: Card) {
+    // Ignorieren, wenn gesperrt, schon offen oder schon gefunden
+    if (this.locked || card.flipped || card.matched) {
+      return;
+    }
+
+    card.flipped = true;
+    this.openCards.push(card);
+
+    // Erst bei der zweiten Karte vergleichen
+    if (this.openCards.length === 2) {
+      this.checkPair();
+    }
+  }
+  checkPair() {
+    const [first, second] = this.openCards;
+
+    if (first.image === second.image) {
+      // Treffer: beide bleiben offen
+      first.matched = true;
+      second.matched = true;
+      this.openCards = [];
+    } else {
+      // Kein Treffer: kurz warten, dann wieder zudecken
+      this.locked = true;
+      setTimeout(() => {
+        first.flipped = false;
+        second.flipped = false;
+        this.openCards = [];
+        this.locked = false;
+      }, 1000);
+    }
   }
 
 }

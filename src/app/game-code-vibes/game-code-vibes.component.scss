@@ -1,0 +1,132 @@
+.game-body-section {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column; // Header oben, Spielfeld darunter
+    align-items: center;
+    padding-top: 24px;
+    gap: 24px;
+    background-color: #294F60;
+}
+
+
+.game-section {
+    display: grid;
+    grid-template-columns: repeat(4, 105px); // Maße laut Design
+    gap: 12px;
+}
+
+.card {
+    width: 105px;
+    height: 120px;
+    perspective: none;
+    position: relative;
+    cursor: pointer;
+    transform-style: preserve-3d; // Kinder behalten ihre 3D-Position
+    transition: transform 0.5s;
+
+    &.flipped {
+        transform: rotateY(180deg); // Karte dreht sich um
+    }
+
+    >img {
+        position: absolute;
+        inset: 0; // beide Bilder liegen übereinander
+        width: 100%;
+        height: 100%;
+        backface-visibility: hidden; // Rückseite des Bildes wird unsichtbar
+    }
+
+    &__back {
+        transform: rotateY(0deg);
+    }
+
+    &__front {
+        transform: rotateY(180deg); // Vorderseite startet "umgedreht"
+    }
+}
+
+
+
+.game__header {
+    width: 100%;
+    max-width: 1220px; // so breit wie im Design, nach Bedarf anpassen
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 20px;
+    background-color: #FD96C933;
+    border-radius: 8px;
+}
+
+.game__scores {
+    display: flex;
+    gap: 12px;
+    padding-left: 16px;
+    padding-right: 16px;
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    max-width: 182px;
+    gap: 40px;
+}
+
+.score {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 700 ;
+    font-family: 'Orbitron';
+    height: 54px;
+    font-size: 30px ;
+
+
+    &--orange {
+        color: #EA6900;
+    }
+
+    &--blue {
+        color: #097FC5;
+    }
+
+    >img {
+        width: 22px;
+        height: 28px;
+    }
+}
+
+.game__current {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #fff;
+    font-size: 32px;
+    font-family: 'Orbitron';
+    font-weight: 700;
+
+
+    >img {
+        width: 28px;
+    }
+}
+
+.game__exit {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    background: #ED1B7614;
+    color: #fff;
+    border: 2px solid#E71C4F;
+    border-radius: 10px;
+    cursor: pointer;
+    font-family: 'Orbitron';
+    font-weight: 700;
+    font-size: 20px;
+    max-width: 195px;
+    max-height: 54px;
+
+    >img{
+        width: 30px;
+        height: 30px;
+    }
+}

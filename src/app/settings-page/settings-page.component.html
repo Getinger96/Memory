@@ -67,17 +67,17 @@
 
             <section class="settings-page__settings__choose">
                 <label>
-                    <input type="radio" name="size" value="16" (change)="size = '16 cards'">
+                    <input type="radio" name="size" value="16" (change)="size = '16'">
                     16 cards
                 </label>
 
                 <label>
-                    <input type="radio" name="size" value="24" (change)="size = '24 cards'">
+                    <input type="radio" name="size" value="24" (change)="size = '24'">
                     24 cards
                 </label>
 
                 <label>
-                    <input type="radio" name="size" value="36" (change)="size = '36 cards'">
+                    <input type="radio" name="size" value="36" (change)="size = '36'">
                     36 cards
                 </label>
             </section>
@@ -96,8 +96,8 @@
             <img [src]="theme ? './assets/img/Line 7.png' : './assets/img/Line 6.png'" alt="">
             <p>{{ player || 'Player' }}</p>
             <img [src]="player ? './assets/img/Line 7.png' : './assets/img/Line 6.png'" alt="">
-            <p>{{ size || 'Board size' }}</p>
-            <button (click)="log()" type="button" [disabled]="!theme || !player || !size"><img
+            <p>{{ size ? size + ' cards' : 'Board size' }}</p>
+            <button (click)="start()" type="button" [disabled]="!theme || !player || !size"><img
                     src="./assets/img/smart_display.png" alt=""> Start</button>
         </section>
 

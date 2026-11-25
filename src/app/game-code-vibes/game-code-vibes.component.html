@@ -14,7 +14,7 @@
 
         <p class="game__current">
             Current player:
-            <img [src]="'./assets/img/player-' + currentPlayer + '.png'" alt="">
+            <img [src]="playerIcons[currentPlayer]" alt="">
         </p>
 
         <button type="button" class="game__exit">
@@ -22,7 +22,7 @@
         </button>
     </header>
 
-    <section class="game-section">
+    <section class="game-section" [style.grid-template-columns]="'repeat(' + columns + ', 105px)'">
         @for (card of cards; track card.id) {
         <div class="card" [class.flipped]="card.flipped || card.matched" (click)="flip(card)">
             <img class="card__front" [src]="card.image" alt="" />

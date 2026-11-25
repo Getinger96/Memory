@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { SettingsService } from '../services/settings.service';
 
 
 interface Card {
@@ -17,13 +18,20 @@ interface Card {
   styleUrl: './game-code-vibes.component.scss'
 })
 export class GameCodeVibesComponent {
+  private settings = inject(SettingsService);
+
 
   cards: Card[] = [];
   openCards: Card[] = [];
   locked = false;
-  currentPlayer: 'orange' | 'blue' = 'orange'; // später aus den Einstellungen
-orangeScore = 0;
-blueScore = 0;
+  columns = 4;
+  currentPlayer: 'orange' | 'blue' = 'orange';
+  orangeScore = 0;
+  blueScore = 0;
+  playerIcons = {
+    orange: './assets/img/orange_player_Pawn.png',
+    blue: './assets/img/blue_player_pawn.png',
+  };
 
 
   allImages: string[] = Array.from(
@@ -33,8 +41,12 @@ blueScore = 0;
 
 
   ngOnInit() {
-    this.createBoard(16);
+    const size = Number(this.settings.size);
+    this.columns = size === 16 ? 4 : 6;
+    this.currentPlayer = this.settings.player === 'Blue Player' ? 'blue' : 'orange';
+    this.createBoard(size);
   }
+
 
   createBoard(size: number) {
     const pairs = size / 2;
@@ -81,18 +93,26 @@ blueScore = 0;
     const [first, second] = this.openCards;
 
     if (first.image === second.image) {
-      // Treffer: beide bleiben offen
       first.matched = true;
       second.matched = true;
       this.openCards = [];
+
+      // Treffer: Punkt für den aktuellen Spieler
+      if (this.currentPlayer === 'orange') {
+        this.orangeScore++;
+      } else {
+        this.blueScore++;
+      }
     } else {
-      // Kein Treffer: kurz warten, dann wieder zudecken
       this.locked = true;
       setTimeout(() => {
         first.flipped = false;
         second.flipped = false;
         this.openCards = [];
         this.locked = false;
+
+        // Kein Treffer: anderer Spieler ist dran
+        this.currentPlayer = this.currentPlayer === 'orange' ? 'blue' : 'orange';
       }, 1000);
     }
   }

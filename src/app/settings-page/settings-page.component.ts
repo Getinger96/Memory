@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { Router } from '@angular/router';
+import { SettingsService } from '../services/settings.service';
 
 @Component({
   selector: 'app-settings-page',
@@ -10,9 +12,16 @@ import { Component } from '@angular/core';
 export class SettingsPageComponent {
 
 
+  settings = inject(SettingsService);
+  private router = inject(Router);
+
   theme = '';
   player = '';
   size = '';
+
+  
+
+
 
 
   themeFrames: Record<string, string> = {
@@ -22,8 +31,10 @@ export class SettingsPageComponent {
     'Foods theme': './assets/img/theme food.png',
   };
 
-  log() {
-    console.log("hallo")
-
+  start() {
+    this.settings.theme = this.theme;
+    this.settings.player = this.player;
+    this.settings.size = this.size;
+    this.router.navigate(['/game']);
   }
 }

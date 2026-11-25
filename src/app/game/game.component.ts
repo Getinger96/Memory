@@ -1,5 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { SettingsService } from '../services/settings.service';
+import { Router } from '@angular/router';
 
 
 interface Card {
@@ -9,16 +10,17 @@ interface Card {
   matched: boolean;
 }
 
-
 @Component({
-  selector: 'app-game-code-vibes',
+  selector: 'app-game',
   standalone: true,
   imports: [],
-  templateUrl: './game-code-vibes.component.html',
-  styleUrl: './game-code-vibes.component.scss'
+  templateUrl: './game.component.html',
+  styleUrl: './game.component.scss'
 })
-export class GameCodeVibesComponent {
+export class GameComponent {
   private settings = inject(SettingsService);
+  private router = inject(Router);
+
 
 
   cards: Card[] = [];
@@ -28,20 +30,33 @@ export class GameCodeVibesComponent {
   currentPlayer: 'orange' | 'blue' = 'orange';
   orangeScore = 0;
   blueScore = 0;
-  playerIcons = {
-    orange: './assets/img/orange_player_Pawn.png',
-    blue: './assets/img/blue_player_pawn.png',
+
+  folder = 'code';
+  allImages: string[] = [];
+
+  themeFolders: Record<string, string> = {
+    'Code vibes': 'code',
+    'Gaming': 'gaming',
+    'DA Projects theme': 'da',
+    'Foods theme': 'foods',
   };
 
+  get path() {
+    return `./assets/img/themes/${this.folder}`;
+  }
 
-  allImages: string[] = Array.from(
-    { length: 18 },
-    (_, i) => `./assets/img/cards/GameVibes/game_vibes${i + 1}.png`
-  );
+
 
 
   ngOnInit() {
-    const size = Number(this.settings.size);
+    const size = Number(this.settings.size) || 16;
+
+    this.folder = this.themeFolders[this.settings.theme] ?? 'code';
+    this.allImages = Array.from(
+      { length: 18 },
+      (_, i) => `${this.path}/card-${i + 1}.png`
+    );
+
     this.columns = size === 16 ? 4 : 6;
     this.currentPlayer = this.settings.player === 'Blue Player' ? 'blue' : 'orange';
     this.createBoard(size);
@@ -117,4 +132,7 @@ export class GameCodeVibesComponent {
     }
   }
 
+  exit() {
+    this.router.navigate(['/settings']);
+  }
 }

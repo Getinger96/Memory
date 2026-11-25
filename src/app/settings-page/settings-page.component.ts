@@ -21,7 +21,12 @@ export class SettingsPageComponent {
 
   
 
-
+themeRoutes: Record<string, string> = {
+  'Code vibes': '/game-code-vibes',
+  'Gaming': '/game-gaming',
+  'DA Projects theme': '/game-da',
+  'Foods theme': '/game-foods',
+};
 
 
   themeFrames: Record<string, string> = {

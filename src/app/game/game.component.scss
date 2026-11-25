@@ -1,3 +1,13 @@
+.theme-code {
+    --bg: #303131;
+    --header-bg: transparent;
+    --accent: #4fd8c0;
+    --text: #FFFFFF;
+    --font-family: 'Red Rose';
+    --card-w: 120px;
+    --card-h: 120px;
+}
+
 .game-body-section {
     min-height: 100vh;
     display: flex;
@@ -5,7 +15,7 @@
     align-items: center;
     padding-top: 24px;
     gap: 24px;
-    background-color: #294F60;
+    background-color: var(--bg);
 }
 
 
@@ -54,7 +64,7 @@
     align-items: center;
     justify-content: space-between;
     padding: 12px 20px;
-    background-color: #FD96C933;
+    background-color: var(--header-bg);
     border-radius: 8px;
 }
 
@@ -73,10 +83,10 @@
     display: flex;
     align-items: center;
     gap: 8px;
-    font-weight: 700 ;
+    font-weight: 700;
     font-family: 'Orbitron';
     height: 54px;
-    font-size: 30px ;
+    font-size: 30px;
 
 
     &--orange {
@@ -97,7 +107,7 @@
     display: flex;
     align-items: center;
     gap: 8px;
-    color: #fff;
+    color: var(--text);
     font-size: 32px;
     font-family: 'Orbitron';
     font-weight: 700;
@@ -124,7 +134,7 @@
     max-width: 195px;
     max-height: 54px;
 
-    >img{
+    >img {
         width: 30px;
         height: 30px;
     }
